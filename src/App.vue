@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="https://vuejs.org/images/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="https://gelinasjames.com/wp-content/uploads/2019/03/curious-team.png" width=200>
+    <h1>Popimad Wikipedia artiklid</h1>
+    <MostRead/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MostRead from './components/MostRead.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MostRead
   }
 }
 </script>
