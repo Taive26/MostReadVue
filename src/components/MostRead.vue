@@ -6,11 +6,14 @@
   <button v-on:click="getMostReadArticles">OTSI</button>
 </div>
 
-<div v-for="(article) in articles"> 
-{{ article.displaytitle }} 
+<div v-for="(article, index) in articles">
+{{ index+1 }}
+{{ article.titlesnormalized }} 
 {{ article.description }}
+<a :href="article.content_urls.desktop.page">
 <div v-if="article.thumbnail" class="entry-thumbnail">
 <img :src="article.thumbnail.source" />
+</a>
 </div>
 </div>
 
@@ -34,26 +37,11 @@ export default {
       errored: false
     }
   },
-  mounted() {
-    axios
-      .get('https://en.wikipedia.org/api/rest_v1/feed/featured/{year}/{month}/{day}')
-      .then(response => {
-        console.log(response.data.mostread.articles)
-        this.articles = response.data.mostread.articles
-      })
-      .catch(error => {
-        console.log(error)
-        this.errored = true
-      })
-      .finally(() => this.loading = false)
-  },
+ 
   methods: {
     getMostReadArticles() {
-      const Year = +this.year;
-      const Month = +this.month;
-      const Day = +this.day;
-      axios
-      .get('https://en.wikipedia.org/api/rest_v1/feed/featured/${this.year}/${this.month}/${this.day')
+axios
+      .get(`https://en.wikipedia.org/api/rest_v1/feed/featured/${this.year}/${this.month}/${this.day}`)
       .then(response => {
         console.log(response.data.mostread.articles)
         this.articles = response.data.mostread.articles
