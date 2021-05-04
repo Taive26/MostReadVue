@@ -6,14 +6,16 @@
   <button v-on:click="getMostReadArticles">OTSI</button>
 </div>
 
-<div v-for="(article, index) in articles">
-{{ index+1 }}
-{{ article.titlesnormalized }} 
+<div v-for="(article) in articles">
+{{ article.normalizedtitle }} 
+<br>
 {{ article.description }}
 <a :href="article.content_urls.desktop.page">
 <div v-if="article.thumbnail" class="entry-thumbnail">
 <img :src="article.thumbnail.source" />
 </a>
+<br>
+<br>
 </div>
 </div>
 
