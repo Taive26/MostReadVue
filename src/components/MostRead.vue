@@ -2,18 +2,22 @@
  <input v-model="day" placeholder="Päev" />
  <input v-model="month" placeholder="Kuu" />
  <input v-model="year" placeholder="Aasta" />
+ <br>
 <div id="button">
   <button v-on:click="getMostReadArticles">OTSI</button>
 </div>
+<br>
 
-<div v-for="(article) in articles">
+<div v-for="(article, index) in articles">
+{{ index+1 }}
+<br>
+<a :href="article.content_urls.desktop.page" target="_blank">
 {{ article.normalizedtitle }} 
+</a>
 <br>
 {{ article.description }}
-<a :href="article.content_urls.desktop.page">
 <div v-if="article.thumbnail" class="entry-thumbnail">
 <img :src="article.thumbnail.source" />
-</a>
 <br>
 <br>
 </div>
