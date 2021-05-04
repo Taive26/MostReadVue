@@ -3,16 +3,21 @@
  <input v-model="month" placeholder="Kuu" />
  <input v-model="year" placeholder="Aasta" />
 
+<!---
 <span v-for="(article, index) in articles">
     {{ index }} {{ article }}
-</span>
+</span> -->
+
+<div id="app">
+  {{ articles }}
+</div>
 
 </template>
 
 <script>
-import axios from `axios`;
+import axios from "axios";
 export default {
-  name: 'Most Read',
+  name: "MostRead",
   props: {
     msg: String
   },
@@ -21,7 +26,7 @@ export default {
       day: null,
       month: null,
       year: null,
-      articles: [],
+      articles: null,
       loading: true,
       errored: false
     }
@@ -30,8 +35,8 @@ export default {
     axios
       .get('https://en.wikipedia.org/api/rest_v1/feed/featured/2021/04/30')
       .then(response => {
-        console.log(response.data.mostread.articles)
-        this.articles = response.data.mostread.articles
+        console.log(response)
+        this.articles = response
       })
       .catch(error => {
         console.log(error)

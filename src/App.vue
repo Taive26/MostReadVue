@@ -7,8 +7,7 @@
 </template>
 
 <script>
-import axios from `axios`
-import MostRead from './components/MostRead.vue'
+import MostRead from "./components/MostRead.vue"
 
 export default {
   name: 'App',
