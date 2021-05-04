@@ -6,11 +6,20 @@
 <!---
 <span v-for="(article, index) in articles">
     {{ index }} {{ article }}
-</span> -->
+</span>
+<section v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['article-thumb']" class="entry-thumbnail">
+						<a :href="post.link"><img :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['article-thumb'].source_url" /></a>
+					</section>
+ -->
 
-<div id="app">
-  {{ articles }}
+<div v-for="(article) in articles"> 
+{{ article.displaytitle }} 
+{{ article.description }}
+<div v-if="article.thumbnail" class="entry-thumbnail">
+<img :src="article.thumbnail.source" />
 </div>
+</div>
+
 
 </template>
 
@@ -35,8 +44,8 @@ export default {
     axios
       .get('https://en.wikipedia.org/api/rest_v1/feed/featured/2021/04/30')
       .then(response => {
-        console.log(response)
-        this.articles = response
+        console.log(response.data.mostread.articles)
+        this.articles = response.data.mostread.articles
       })
       .catch(error => {
         console.log(error)
