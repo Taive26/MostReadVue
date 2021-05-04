@@ -2,15 +2,11 @@
  <input v-model="day" placeholder="Päev" />
  <input v-model="month" placeholder="Kuu" />
  <input v-model="year" placeholder="Aasta" />
-
-<!---
-<span v-for="(article, index) in articles">
-    {{ index }} {{ article }}
-</span>
-<section v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['article-thumb']" class="entry-thumbnail">
-						<a :href="post.link"><img :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['article-thumb'].source_url" /></a>
-					</section>
- -->
+ <button
+      class="bg-green-400 px-4 py-2 rounded mb-3"
+      color="success"
+    >
+    </button>
 
 <div v-for="(article) in articles"> 
 {{ article.displaytitle }} 
@@ -32,9 +28,9 @@ export default {
   },
     data() {
     return {
-      day: null,
-      month: null,
-      year: null,
+      day: "",
+      month: "",
+      year: "",
       articles: null,
       loading: true,
       errored: false
@@ -42,7 +38,7 @@ export default {
   },
   mounted() {
     axios
-      .get('https://en.wikipedia.org/api/rest_v1/feed/featured/2021/04/30')
+      .get('https://en.wikipedia.org/api/rest_v1/feed/featured/{year}/{month}/{day}')
       .then(response => {
         console.log(response.data.mostread.articles)
         this.articles = response.data.mostread.articles
